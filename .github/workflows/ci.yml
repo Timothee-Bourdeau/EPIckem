@@ -12,11 +12,6 @@ concurrency:
 permissions:
   contents: read
 
-env:
-  POSTGRES_USER: user_test
-  POSTGRES_PASSWORD: password_test
-  POSTGRES_DB: db_test
-
 jobs:
   back:
     name: Back
@@ -29,9 +24,9 @@ jobs:
       postgres:
         image: postgres:16
         env:
-          POSTGRES_USER: ${{ env.POSTGRES_USER }}
-          POSTGRES_PASSWORD: ${{ env.POSTGRES_PASSWORD }}
-          POSTGRES_DB: ${{ env.POSTGRES_DB }}
+          POSTGRES_USER: user_test
+          POSTGRES_PASSWORD: password_test
+          POSTGRES_DB: db_test
         ports:
           - 5432:5432
         options: >-
@@ -41,7 +36,7 @@ jobs:
           --health-retries 5
 
     env:
-      DATABASE_URL: postgresql://${{ env.POSTGRES_USER }}:${{ env.POSTGRES_PASSWORD }}@localhost:5432/${{ env.POSTGRES_DB }}?schema=public
+      DATABASE_URL: postgresql://user_test:password_test@localhost:5432/db_test?schema=public
 
     steps:
       - uses: actions/checkout@v4
