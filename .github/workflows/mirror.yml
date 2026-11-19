@@ -1,0 +1,29 @@
+name: Mirror
+
+on:
+  push:
+    branches: [main]
+
+concurrency:
+  group: mirror
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+jobs:
+  sync:
+    if: vars.DEST_REPO_URL != ''
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+
+      - name: Push to the real repository
+        env:
+          GITHUB_TOKEN: ${{ secrets.PAT }}
+          DEST_REPO_URL: ${{ vars.DEST_REPO_URL }}
+        run: |
+          git remote add repo "https://x-access-token:${GITHUB_TOKEN}@github.com/${DEST_REPO_URL}.git"
+          git push repo main
