@@ -1,7 +1,6 @@
 services:
   db:
     image: postgres:16
-    container_name: epickem-db
     restart: unless-stopped
     environment:
       POSTGRES_USER: ${POSTGRES_USER}
@@ -16,6 +15,34 @@ services:
       interval: 5s
       timeout: 5s
       retries: 10
+
+  # Applique les migrations Prisma une fois la base prête, puis s'arrête.
+  migrate:
+    build:
+      context: ./back
+      target: migrate
+    environment:
+      DATABASE_URL: postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@db:5432/${POSTGRES_DB}?schema=public
+    depends_on:
+      db:
+        condition: service_healthy
+    restart: "no"
+
+  back:
+    build:
+      context: ./back
+      target: runtime
+    restart: unless-stopped
+    environment:
+      PORT: 3000
+      DATABASE_URL: postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@db:5432/${POSTGRES_DB}?schema=public
+    ports:
+      - "${BACK_PORT:-3000}:3000"
+    depends_on:
+      db:
+        condition: service_healthy
+      migrate:
+        condition: service_completed_successfully
 
 volumes:
   epickem-db-data:
