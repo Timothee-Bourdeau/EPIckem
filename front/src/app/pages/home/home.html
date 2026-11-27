@@ -1,0 +1,42 @@
+<main id="contenu" tabindex="-1">
+  <section class="hero" aria-labelledby="titre-hero">
+    <h1 id="titre-hero">Pronostiquez vos tournois e-sport préférés</h1>
+    <p class="lead">
+      Prédisez les résultats, suivez les matchs en direct et affrontez les autres joueurs au
+      classement.
+    </p>
+    <div class="actions">
+      <a class="btn btn-primary" routerLink="/inscription">Créer un compte</a>
+      <a class="btn btn-secondary" routerLink="/tournois">Voir les tournois</a>
+    </div>
+  </section>
+
+  <section id="fonctionnalites" aria-labelledby="titre-fonctionnalites">
+    <h2 id="titre-fonctionnalites">Fonctionnalités</h2>
+    <ul class="cards">
+      @for (feature of features; track feature.title) {
+        <li class="card">
+          <h3>{{ feature.title }}</h3>
+          <p>{{ feature.description }}</p>
+        </li>
+      }
+    </ul>
+  </section>
+
+  <section id="fonctionnement" aria-labelledby="titre-fonctionnement">
+    <h2 id="titre-fonctionnement">Comment ça marche</h2>
+    <ol class="steps">
+      @for (step of steps; track step.title) {
+        <li>
+          <h3>{{ step.title }}</h3>
+          <p>{{ step.description }}</p>
+        </li>
+      }
+    </ol>
+  </section>
+
+  <section class="cta" aria-labelledby="titre-cta">
+    <h2 id="titre-cta">Prêt à tenter votre chance ?</h2>
+    <a class="btn btn-primary" routerLink="/inscription">Rejoindre Epickem</a>
+  </section>
+</main>

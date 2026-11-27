@@ -1,0 +1,94 @@
+:host {
+  display: block;
+}
+
+main {
+  padding: 0 clamp(1rem, 5vw, 4rem) 3rem;
+  max-width: 72rem;
+  margin: 0 auto;
+
+  &:focus {
+    outline: none;
+  }
+}
+
+section {
+  padding: 3rem 0;
+}
+
+h1 {
+  font-size: clamp(2rem, 6vw, 3.5rem);
+  line-height: 1.15;
+  margin: 0 0 1rem;
+}
+
+h2 {
+  font-size: 1.75rem;
+  margin: 0 0 1.5rem;
+}
+
+h3 {
+  margin: 0 0 0.5rem;
+  font-size: 1.15rem;
+}
+
+p {
+  margin: 0;
+}
+
+.hero {
+  text-align: center;
+  padding-top: 4rem;
+
+  .lead {
+    max-width: 40rem;
+    margin: 0 auto 2rem;
+    color: var(--muted);
+    font-size: 1.2rem;
+  }
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.cards,
+.steps {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
+  gap: 1rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.card,
+.steps li {
+  background: var(--surface);
+  border-radius: 0.75rem;
+  padding: 1.25rem;
+
+  p {
+    color: var(--muted);
+  }
+}
+
+.steps {
+  counter-reset: step;
+
+  li {
+    counter-increment: step;
+
+    h3::before {
+      content: counter(step) '. ';
+      color: var(--accent);
+    }
+  }
+}
+
+.cta {
+  text-align: center;
+}
