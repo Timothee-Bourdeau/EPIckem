@@ -44,5 +44,15 @@ services:
       migrate:
         condition: service_completed_successfully
 
+  front:
+    build:
+      context: ./front
+    restart: unless-stopped
+    ports:
+      - "${FRONT_PORT:-8080}:8080"
+    depends_on:
+      back:
+        condition: service_healthy
+
 volumes:
   epickem-db-data:
