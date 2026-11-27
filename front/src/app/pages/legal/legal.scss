@@ -1,0 +1,38 @@
+:host {
+  display: block;
+}
+
+main {
+  max-width: 48rem;
+  margin: 0 auto;
+  padding: 3rem clamp(1rem, 5vw, 2rem);
+
+  &:focus {
+    outline: none;
+  }
+}
+
+h1 {
+  font-size: clamp(1.75rem, 5vw, 2.5rem);
+  line-height: 1.2;
+  margin: 0 0 1rem;
+}
+
+h2 {
+  font-size: 1.3rem;
+  margin: 2rem 0 0.5rem;
+}
+
+p,
+ul {
+  margin: 0 0 0.75rem;
+}
+
+ul {
+  padding-left: 1.25rem;
+}
+
+.intro {
+  color: var(--muted);
+  font-size: 1.1rem;
+}

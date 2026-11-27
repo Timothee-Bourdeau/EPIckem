@@ -1,0 +1,91 @@
+:host {
+  display: block;
+  position: sticky;
+  top: 0;
+  z-index: 5;
+}
+
+.skip-link {
+  position: absolute;
+  left: 1rem;
+  top: -4rem;
+  padding: 0.5rem 1rem;
+  background: #ffd166;
+  color: #000;
+  z-index: 10;
+
+  &:focus {
+    top: 1rem;
+  }
+}
+
+.header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1rem clamp(1rem, 5vw, 4rem);
+  background: color-mix(in srgb, var(--bg) 92%, transparent);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--surface);
+
+  ul {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.25rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  // Séparation entre les liens de navigation et les boutons de compte
+  li:nth-last-child(2) {
+    margin-left: 0.75rem;
+    padding-left: 1rem;
+    border-left: 1px solid var(--surface);
+  }
+
+  a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 2.5rem;
+    padding: 0 0.9rem;
+    border-radius: 0.5rem;
+    font-size: 0.95rem;
+    font-weight: 500;
+    text-decoration: none;
+    transition:
+      background-color 0.15s ease,
+      color 0.15s ease;
+  }
+
+  a:not(.btn) {
+    color: var(--muted);
+
+    &:hover {
+      background: var(--surface);
+      color: var(--text);
+    }
+  }
+
+  .btn {
+    margin-left: 0.25rem;
+
+    &.btn-secondary:hover {
+      background: var(--surface);
+    }
+
+    &.btn-primary:hover {
+      background: #a094ff;
+      border-color: #a094ff;
+    }
+  }
+}
+
+.brand {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--text);
+}
